@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class Question1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter current hour (1-24): ");
+        int hour = scanner.nextInt();
+
+        if (hour < 1 || hour > 24) {
+            System.out.println("Invalid hour! Please enter a value between 1 and 24.");
+            return;
+        }
+
+        String trafficType;
+        int greenTime;
+        int redTime;
+
+        if ((hour >= 6 && hour <= 10) || (hour >= 17 && hour <= 20)) {
+            trafficType = "Rush Hour";
+            greenTime = 60;
+            redTime = 90;
+        } else if (hour >= 11 && hour <= 16) {
+            trafficType = "Normal Traffic";
+            greenTime = 45;
+            redTime = 75;
+        } else {
+            trafficType = "Low Traffic";
+            greenTime = 30;
+            redTime = 60;
+        }
+
+        int totalCycle = greenTime + redTime;
+
+        String status;
+        if (totalCycle % 15 == 0) {
+            status = "Timing Optimized";
+        } else {
+            status = "Adjustment Needed";
+        }
+
+        System.out.println("Traffic Type: " + trafficType);
+        System.out.println("Green Time: " + greenTime + " seconds");
+        System.out.println("Red Time: " + redTime + " seconds");
+        System.out.println("Total Cycle: " + totalCycle + " seconds");
+        System.out.println("Status: " + status);
+    }
+}
