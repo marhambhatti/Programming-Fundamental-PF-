@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class SpecialNumberSeries {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter number of terms: ");
+        int n = scanner.nextInt();
+
+        generateSeries(n);
+
+        scanner.close();
+    }
+
+    public static void generateSeries(int n) {
+        System.out.print("Generated Series: ");
+        long totalSum = 0;
+
+        for (int i = 1; i <= n; i++) {
+            long repeatedNumber = createRepeatedDigitNumber(i);
+            long term = repeatedNumber * i;
+
+            if (i % 2 == 0) {
+                totalSum -= term;
+                System.out.print(" - " + repeatedNumber + "×" + i);
+            } else {
+                totalSum += term;
+                if (i == 1) {
+                    System.out.print(repeatedNumber + "×" + i);
+                } else {
+                    System.out.print(" + " + repeatedNumber + "×" + i);
+                }
+            }
+        }
+
+        System.out.println();
+        System.out.println("Total Series Sum: " + totalSum);
+    }
+
+    public static long createRepeatedDigitNumber(int digit) {
+        long result = 0;
+        long multiplier = 1;
+
+        for (int i = 0; i < digit; i++) {
+            result = result + (digit * multiplier);
+            multiplier *= 10;
+        }
+
+        return result;
+    }
+}
